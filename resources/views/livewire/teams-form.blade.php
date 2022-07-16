@@ -18,7 +18,7 @@
         <div class="basis-1/2">Numéro</div>
         <div class="basis-1/2"> Nom </div>
     </div>
-    @foreach($teams as $team)
+    @foreach($teams->sortBy('number') as $team)
     <div class="mb-1">
         <livewire:team-form :team="$team" :wire:key="$team->id" />
     </div>

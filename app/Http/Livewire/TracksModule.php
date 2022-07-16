@@ -12,7 +12,8 @@ class TracksModule extends Component
     public Track $track;
 
     protected $listeners = [
-        'trackDeleted' => 'render'
+        'trackDeleted' => 'render',
+        'trackAdded' => 'render'
     ];
 
     protected function rules()
@@ -37,7 +38,8 @@ class TracksModule extends Component
         $this->validate();
         $this->track->save();
         $this->track = new Track();
-        $this->render();
+        $this->tracks = track::orderBy('created_at', 'desc')->get();
+        $this->emit('trackAdded');
     }
 
     public function render()

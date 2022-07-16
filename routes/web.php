@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\AttributionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,8 @@ Route::middleware([
 
         Route::get('/teams', [TeamController::class, 'index'])
             ->name('teams');
+
+            Route::get('/attributions/{track}/{event}', [AttributionController::class, 'index'])
+            ->name('attributions');
     });
 });

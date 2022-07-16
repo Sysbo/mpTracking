@@ -26,7 +26,7 @@
     </div>
     @foreach($track->marshalPosts->sortBy('number', SORT_NUMERIC) as $mp)
     <div class="mb-1">
-        <livewire:marshal-post-form :mp="$mp" :wire:key="$mp->id" />
+        <livewire:marshal-post-form :mp="$mp" :track="$track" :wire:key="$mp->id" />
     </div>
     @endforeach
 </div>

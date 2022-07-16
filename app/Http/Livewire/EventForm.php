@@ -19,14 +19,11 @@ class EventForm extends Component
     public function updatedEvent($value, $key){
         $this->validateOnly("event.".$key);
         $this->event->update([$key, $value]);
-        session()->flash('message', 'Post successfully updated.');
-        $this->dispatchBrowserEvent('eventupdated');
         $this->emit('eventUpdated');
     }
 
     public function deleteEvent(){
         $this->event->delete();
-        $this->dispatchBrowserEvent('eventdeleted');
         $this->emit('eventDeleted');
     }
 

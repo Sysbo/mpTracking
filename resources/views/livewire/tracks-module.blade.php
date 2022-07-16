@@ -20,9 +20,9 @@
                     <button type="submit" class="w-full py-2 px-3 text-sm text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Ajouter</button>
                 </form>
             </div>
-            <div class="flex flex-row gap-4">
+            <div class="flex flex-row flex-wrap gap-4">
                 @foreach($tracks as $track)
-                <div class="basis-1/4">
+                <div class="basis-1/4 ">
                     <livewire:track-module :track="$track" :wire:key="$track->id" />
                 </div>
                 @endforeach

@@ -13,7 +13,8 @@ class TrackMarshalPostForm extends Component
     public MarshalPost $mp;
 
     protected $listeners = [
-        'marshalPostDeleted' => 'render'
+        'marshalPostDeleted' => 'render',
+        'marshalPostAdded' => 'render'
     ];
 
     protected function rules()
@@ -38,7 +39,7 @@ class TrackMarshalPostForm extends Component
         $this->validate();
         $this->track->marshalPosts()->save($this->mp);
         $this->mp = new MarshalPost();
-        $this->render();
+        $this->emitSelf('marshalPostAdded');
     }
 
     public function render()

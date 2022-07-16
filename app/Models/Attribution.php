@@ -13,6 +13,13 @@ class Attribution extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['marshal_post_id','team_id','event_id','day'];
+
+    /**
      * Get the event that owns the attribution.
      */
     public function event()

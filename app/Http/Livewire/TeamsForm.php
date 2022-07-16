@@ -13,7 +13,8 @@ class TeamsForm extends Component
     public Team $team;
 
     protected $listeners = [
-        'teamDeleted' => 'render'
+        'teamDeleted' => 'render',
+        'teamAdded' => 'render'
     ];
 
     protected function rules()
@@ -30,7 +31,6 @@ class TeamsForm extends Component
     public function mount()
     {
         $this->team = new Team();
-        $this->teams = $this->teams->sortBy('number');
     }
 
     public function addTeam()
@@ -38,7 +38,8 @@ class TeamsForm extends Component
         $this->validate();
         $this->team->save();
         $this->team = new Team();
-        $this->render();
+        $this->teams = Team::all();
+        $this->emitSelf('teamAdded');
     }
     public function render()
     {

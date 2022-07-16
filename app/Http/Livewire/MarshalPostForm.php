@@ -4,12 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\MarshalPost;
+use App\Models\Track;
 use Illuminate\Validation\Rule;
 
 class MarshalPostForm extends Component
 {
 
     public MarshalPost $mp;
+    public Track $track;
 
     protected function rules()
     {

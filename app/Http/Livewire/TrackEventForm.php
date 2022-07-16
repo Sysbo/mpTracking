@@ -12,9 +12,9 @@ class TrackEventForm extends Component
 
     public Track $track;
     public Event $event;
-    public $years;
-    public $year;
-    public $events;
+    //public $years;
+    //public $year;
+    //public $events;
 
     protected $listeners = [
         'eventDeleted' => 'render',
@@ -27,7 +27,6 @@ class TrackEventForm extends Component
         return [
             'event.name' => [
                 'required',
-                //Rule::unique('marshal_posts','number')->where(fn ($query) => $query->where('track_id', $this->track->id))
             ],
             'event.date_start' => 'required',
             'event.date_end' => 'required',
@@ -37,20 +36,21 @@ class TrackEventForm extends Component
     public function mount()
     {
         $this->event = new Event();
-        $this->events = $this->track->events->sortBy('date_start');
-        $this->years = DB::select('SELECT EXTRACT(year FROM date_start) AS year FROM events GROUP BY EXTRACT(year FROM date_start)');
+        //$this->events = $this->track->events->sortBy('date_start');
+        //$this->years = DB::select('SELECT EXTRACT(year FROM date_start) AS year FROM events GROUP BY EXTRACT(year FROM date_start)');
     }
 
-    public function updatedYear(){
+    /*public function updatedYear(){
         $this->events = $this->track->events;
-    }
+    }*/
 
     public function addEvent()
     {
         $this->validate();
         $this->track->events()->save($this->event);
-        $this->emit('eventAdded');
+        //$this->events = Event::where('track_id', $this->track->id)->get();
         $this->event = new Event();
+        $this->emitSelf('eventAdded');
     }
     public function render()
     {
